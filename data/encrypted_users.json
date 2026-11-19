@@ -1,0 +1,38 @@
+[
+  {
+    "id": 101,
+    "email": "zain.tariq@example.test",
+    "role": "intern",
+    "encrypted_secrets": {
+      "alg": "AES-256-CTR+HMAC-SHA256-PBKDF2",
+      "salt": "5jHxWhjBezqItpccKoRUfw==",
+      "iv": "j3q+qFO705+WIs5E",
+      "ciphertext": "Pot0UxfEVDOHXbu/nNmrTC9dOTFOS+MQfU58yKBjrQqHsfrKUbvVpU680YJzMSDYuMOA4A6ka4O4q+sTTJPP72oEMlL/zg==",
+      "tag": "tirw4dQKsT0phW5pOA51n19R2kFmFr0Jkfp0l1eSW0o="
+    }
+  },
+  {
+    "id": 102,
+    "email": "hina.mahmood@example.test",
+    "role": "soc_analyst",
+    "encrypted_secrets": {
+      "alg": "AES-256-CTR+HMAC-SHA256-PBKDF2",
+      "salt": "4n1U3iSe2Hf5cHd7TntLvA==",
+      "iv": "QN0nsB6xWprz/jox",
+      "ciphertext": "ZDbI9yKBdGuZgnKYIgebW1EpsnVXzGBmppDz4i+5cC4i//c3gyJo/YPGHLPAz55u7b9noD1aeL4FjwjO8ccWqCqUIfxT1w==",
+      "tag": "CKsnU9nuweV6hnIjC5qOe07BNkhOItaTOKK8baYAlok="
+    }
+  },
+  {
+    "id": 103,
+    "email": "bilal.siddiqui@example.test",
+    "role": "cloud_admin",
+    "encrypted_secrets": {
+      "alg": "AES-256-CTR+HMAC-SHA256-PBKDF2",
+      "salt": "cJX5AvWHkXRito2f5OCHbA==",
+      "iv": "jTxEzN63sOeeCXwe",
+      "ciphertext": "zerWTpAoMi5+XtiQNg/CEj6tZjodbQddCjb3O3BmWQ5a6+Rk6I8PpfAChnpGvV+KtPxt3/xvX3hvXLD5MAwqc7enoAqXLg==",
+      "tag": "TIY5+hd/mwNN8z0sD8powCji0scrnMeBMKiCkFYCbAQ="
+    }
+  }
+]

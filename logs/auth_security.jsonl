@@ -1,0 +1,4 @@
+{"timestamp": "2026-11-16T04:47:22.034940+00:00", "event": "AES256_VAULT_ENCRYPTED", "records_count": 3}
+{"timestamp": "2026-11-16T04:47:22.203607+00:00", "event": "TOTP_2FA_VERIFIED", "account": "zain.tariq@example.test", "valid_check": true, "invalid_rejected": true}
+{"timestamp": "2026-11-16T04:48:27.995901+00:00", "event": "OAUTH2_PKCE_TOKEN_ISSUED", "client_id": "internee-web-client", "user_email": "zain.tariq@example.test", "state_prefix": "x5jMyf", "scope": "openid profile email offline_access", "expires_in_sec": 900}
+{"timestamp": "2026-11-16T04:48:27.997539+00:00", "event": "OAUTH2_PKCE_TOKEN_ISSUED", "client_id": "internee-web-client", "user_email": "hina.mahmood@example.test", "state_prefix": "N1oPoJ", "scope": "openid profile email offline_access", "expires_in_sec": 900}

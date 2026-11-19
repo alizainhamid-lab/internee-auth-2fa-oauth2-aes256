@@ -1,0 +1,26 @@
+[
+  {
+    "id": 101,
+    "full_name": "Zain Tariq",
+    "email": "zain.tariq@example.test",
+    "role": "intern",
+    "ssn_or_id": "35202-1111222-3",
+    "api_token": "tok_live_98a7b6c5d4e3"
+  },
+  {
+    "id": 102,
+    "full_name": "Hina Mahmood",
+    "email": "hina.mahmood@example.test",
+    "role": "soc_analyst",
+    "ssn_or_id": "35202-3333444-5",
+    "api_token": "tok_live_112233445566"
+  },
+  {
+    "id": 103,
+    "full_name": "Bilal Siddiqui",
+    "email": "bilal.siddiqui@example.test",
+    "role": "cloud_admin",
+    "ssn_or_id": "35202-5555666-7",
+    "api_token": "tok_live_77889900aabb"
+  }
+]
