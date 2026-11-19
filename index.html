@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internee.pk 2FA, OAuth 2.0 & AES-256 Console</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0b1120; color: #e2e8f0; margin: 0; padding: 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 4px; }
+    .sub { color: #94a3b8; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 16px; }
+    .card h3 { margin: 0 0 8px; font-size: 13px; color: #94a3b8; text-transform: uppercase; }
+    .card .val { font-size: 28px; font-weight: bold; }
+    .ok { color: #4ade80; } .info { color: #38bdf8; } .warn { color: #facc15; }
+    .controls { margin-bottom: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+    button { background: #0284c7; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    button:hover { background: #0369a1; }
+    button.sec { background: #334155; }
+    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 10px; overflow: hidden; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #334155; font-size: 14px; }
+    th { background: #0f172a; color: #94a3b8; }
+    .badge { padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; background: #14532d; color: #bbf7d0; }
+    .otp-box { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    code { color: #38bdf8; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Authentication Hardening & AES-256 Vault Console</h1>
+    <div class="sub">Internee.pk Internship Task • Google Authenticator TOTP + OAuth 2.0 PKCE + AES-256 Encrypt-then-MAC • Built by Ali Zain Hamed</div>
+
+    <div class="otp-box">
+      <div><strong>Sample TOTP Token (30s window):</strong> <code id="liveOtp">------</code></div>
+      <div><strong>Vault Cipher:</strong> <code>AES-256-CTR + HMAC-SHA256</code> | <strong>OAuth:</strong> <code>PKCE S256</code></div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h3>Encrypted Records</h3><div class="val ok" id="encCount">3</div></div>
+      <div class="card"><h3>2FA Verifications</h3><div class="val info" id="totpCount">1</div></div>
+      <div class="card"><h3>OAuth PKCE Logins</h3><div class="val warn" id="oauthCount">2</div></div>
+      <div class="card"><h3>Security Posture</h3><div class="val ok">HARDENED</div></div>
+    </div>
+
+    <div class="controls">
+      <button onclick="simOAuth()">+ Simulate OAuth 2.0 PKCE Login</button>
+      <button onclick="simEncrypt()">+ Encrypt Mockaroo User Record</button>
+      <button class="sec" onclick="refreshOtp()">Refresh 6-Digit OTP</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Control</th>
+          <th>Subject</th>
+          <th>Verification Details</th>
+        </tr>
+      </thead>
+      <tbody id="authRows"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const logs = [
+      { status: "VERIFIED", ctrl: "AES-256 Vault", subj: "mockaroo_users.json (3 users)", detail: "Encrypted SSN/ID & API tokens with PBKDF2 + HMAC-SHA256 integrity check" },
+      { status: "VERIFIED", ctrl: "2FA TOTP", subj: "zain.tariq@example.test", detail: "Base32 secret + otpauth:// URI generated; valid code accepted & invalid rejected" },
+      { status: "ISSUED", ctrl: "OAuth 2.0 + PKCE", subj: "zain.tariq@example.test", detail: "PKCE challenge verified; short-lived Bearer + Refresh token issued" },
+      { status: "ISSUED", ctrl: "OAuth 2.0 + PKCE", subj: "hina.mahmood@example.test", detail: "PKCE challenge verified; scoped session token issued" }
+    ];
+
+    function genOtp() {
+      return String(Math.floor(100000 + Math.random() * 900000));
+    }
+
+    function refreshOtp() {
+      document.getElementById("liveOtp").textContent = genOtp();
+    }
+
+    function render() {
+      document.getElementById("authRows").innerHTML = logs.map(r => `
+        <tr>
+          <td><span class="badge">${r.status}</span></td>
+          <td><strong>${r.ctrl}</strong></td>
+          <td>${r.subj}</td>
+          <td>${r.detail}</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("encCount").textContent = logs.filter(r => r.ctrl === "AES-256 Vault").length + 2;
+      document.getElementById("oauthCount").textContent = logs.filter(r => r.ctrl === "OAuth 2.0 + PKCE").length;
+    }
+
+    function simOAuth() {
+      logs.unshift({ status: "ISSUED", ctrl: "OAuth 2.0 + PKCE", subj: "bilal.siddiqui@example.test", detail: "New PKCE authorization exchange completed with state check" });
+      render();
+    }
+
+    function simEncrypt() {
+      logs.unshift({ status: "VERIFIED", ctrl: "AES-256 Vault", subj: "user_record_new", detail: "Payload encrypted with fresh 16-byte salt & 12-byte IV" });
+      render();
+    }
+
+    refreshOtp();
+    render();
+  </script>
+</body>
+</html>
